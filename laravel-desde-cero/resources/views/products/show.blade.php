@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
+@extends('layouts.master')
 
-        <title>Document</title>
-    </head>
+@section('content')
+    <h1>{{ $product->title }} ({{ $product->id }})</h1>
 
-    <body>
-        <h1>{{ $product->title }} ({{ $product->id }})</h1>
+    <p>{{ $product->description }}</p>
 
-        <p>{{ $product->description }}</p>
-
-        <p>{{ $product->price }}</p>
-        
-        <p>{{ $product->stock }}</p>
-        
-        <p>{{ $product->status }}</p>
-    </body>
-</html>
+    <p>{{ $product->price }}</p>
+    
+    <p>{{ $product->stock }}</p>
+    
+    <p>{{ $product->status }}</p>
+@endsection
