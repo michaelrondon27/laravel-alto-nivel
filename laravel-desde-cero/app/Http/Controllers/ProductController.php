@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -18,9 +19,11 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        dd('Estamos en store');
+        $product = Product::create($request->all());
+
+        return $product;
     }
 
     public function show($product)
