@@ -7,8 +7,14 @@
     </head>
 
     <body>
-        <h1>Soap (1)</h1>
+        <h1>{{ $product->title }} ({{ $product->id }})</h1>
 
-        <p>Best soap ever</p>
+        <p>{{ $product->description }}</p>
+
+        <p>{{ $product->price }}</p>
+        
+        <p>{{ $product->stock }}</p>
+        
+        <p>{{ $product->status }}</p>
     </body>
 </html>
