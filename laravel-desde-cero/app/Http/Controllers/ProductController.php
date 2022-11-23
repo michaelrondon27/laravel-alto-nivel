@@ -26,24 +26,30 @@ class ProductController extends Controller
         return $product;
     }
 
-    public function show($product)
+    public function show($id)
     {
         return view('products.show')->with([
-            'product' => Product::findOrFail($product)
+            'product' => Product::findOrFail($id)
         ]);
     }
 
-    public function edit($product)
+    public function edit($id)
     {
-        return "Showing the form to edit the product with id {$product} from CONTROLLER";
+        return view('products.edit')->with([
+            'product' => Product::findOrFail($id)
+        ]);
     }
 
-    public function update($product)
+    public function update(Request $request, $id)
     {
-        // 
+        $product = Product::findOrFail($id);
+
+        $product->update($request->all());
+
+        return $product;
     }
 
-    public function destroy($product)
+    public function destroy($id)
     {
         // 
     }
