@@ -19,15 +19,25 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        if ( $request->status == 'available' && $request->stock == 0 ) {
+        $rules = [
+            'title' => ['required', 'max:255'],
+            'description' => ['required', 'max:1000'],
+            'price' => ['required', 'min:1'],
+            'stock' => ['required', 'min:0'],
+            'status' => ['required', 'in:available,unavailable']
+        ];
+
+        request()->validate($rules);
+
+        if ( request()->status == 'available' && request()->stock == 0 ) {
             session()->flash('error', 'If available must have stock');
 
             return redirect()->back();
         }
 
-        $product = Product::create($request->all());
+        $product = Product::create(request()->all());
 
         return redirect()->route('products.index');
     }
@@ -46,11 +56,21 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update($id)
     {
+        $rules = [
+            'title' => ['required', 'max:255'],
+            'description' => ['required', 'max:1000'],
+            'price' => ['required', 'min:1'],
+            'stock' => ['required', 'min:0'],
+            'status' => ['required', 'in:available,unavailable']
+        ];
+
+        request()->validate($rules);
+        
         $product = Product::findOrFail($id);
 
-        $product->update($request->all());
+        $product->update(request()->all());
 
         return redirect()->route('products.index');
     }
