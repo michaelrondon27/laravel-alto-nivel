@@ -31,7 +31,7 @@ class ProductController extends Controller
 
         request()->validate($rules);
 
-        if ( request()->status == 'available' && request()->stock == 0 ) {
+        if (request()->status == 'available' && request()->stock == 0) {
             session()->flash('error', 'If available must have stock');
 
             return redirect()->back();
@@ -67,7 +67,7 @@ class ProductController extends Controller
         ];
 
         request()->validate($rules);
-        
+
         $product = Product::findOrFail($id);
 
         $product->update(request()->all());

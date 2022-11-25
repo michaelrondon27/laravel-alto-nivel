@@ -25,7 +25,7 @@
                 </thead>
 
                 <tbody>
-                    @foreach($products as $product)
+                    @foreach ($products as $product)
                         <tr>
                             <td>{{ $product->id }}</td>
                             <td>{{ $product->title }}</td>
