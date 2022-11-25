@@ -34,7 +34,7 @@ class ProductController extends Controller
         if (request()->status == 'available' && request()->stock == 0) {
             session()->flash('error', 'If available must have stock');
 
-            return redirect()->back();
+            return redirect()->back()->withInput(request()->all());
         }
 
         $product = Product::create(request()->all());
